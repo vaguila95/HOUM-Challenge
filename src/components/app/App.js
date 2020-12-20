@@ -1,4 +1,4 @@
-import './App.css';
+import './App.less';
 import AppContent from '../appContent'
 import TopNavbar from '../topNavbar'
 import SideNavbar from '../sideNavbar'

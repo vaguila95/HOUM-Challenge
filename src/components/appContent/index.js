@@ -3,18 +3,17 @@ import { useEffect, useState } from 'react';
 import { Content } from 'antd/lib/layout/layout';
 
 const AppContent = () => {
-  const [pageSize, setPageSize] = useState(20);
   const [pokemonOffset, setPokemonOffset] = useState(0)
   const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${pageSize}&offset=${pokemonOffset}`);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonOffset}`);
       const data = await response.json();
-      setPokemonData(data.results);
+      setPokemonData([...pokemonData, ...data.results]);
     }
     fetchData();
-  }, [pageSize, pokemonOffset])
+  }, [pokemonData, pokemonOffset])
 
   return (
     <Content>
