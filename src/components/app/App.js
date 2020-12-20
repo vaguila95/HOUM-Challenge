@@ -1,25 +1,20 @@
-import { useState } from 'react';
-import { Button } from 'antd';
 import './App.css';
-import PokemonCard from '../pokemonCard/pokemonCard'
+import AppContent from '../appContent'
+import TopNavbar from '../topNavbar'
+import SideNavbar from '../sideNavbar'
+
+import Layout from 'antd/lib/layout/layout';
 
 const App = () => {
-
-  const idArray = []
-  const [pageSize, setPageSize] = useState(20);
-  let auxId = 1
-  while (idArray.length < pageSize) {
-    idArray.push(auxId)
-    auxId += 1;
-  }
-
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
-      <h1>PokeCards</h1>
-      {idArray.map((pokemonId) => (
-        <PokemonCard key={pokemonId} id={pokemonId} />
-      ))}
+    <div>
+      <Layout>
+        <TopNavbar/>
+        <Layout>
+          <SideNavbar/>
+          <AppContent/>          
+        </Layout>
+      </Layout>
     </div>
   );
 }
