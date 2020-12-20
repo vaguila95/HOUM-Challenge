@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from 'antd';
 import './App.css';
 import PokemonCard from '../pokemonCard/pokemonCard'
@@ -5,7 +6,7 @@ import PokemonCard from '../pokemonCard/pokemonCard'
 const App = () => {
 
   const idArray = []
-  const pageSize = 120
+  const [pageSize, setPageSize] = useState(20);
   let auxId = 1
   while (idArray.length < pageSize) {
     idArray.push(auxId)
