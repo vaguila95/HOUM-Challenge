@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import './App.css';
 import PokemonCard from '../pokemonCard/pokemonCard'
 
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Button type="primary">Button</Button>
       <h1>PokeCards</h1>
       {idArray.map((pokemonId) => (
         <PokemonCard key={pokemonId} id={pokemonId} />
