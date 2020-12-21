@@ -28,6 +28,7 @@ const AppContent = () => {
     >
       <Row
         gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}
+        justify="space-between"
       >
         {pokemonData.map((pokemonData) => (
           <Col>
