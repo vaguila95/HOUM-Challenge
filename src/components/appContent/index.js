@@ -1,6 +1,7 @@
 import PokemonCard from '../pokemonCard'
 import { useEffect, useState } from 'react';
 import { Content } from 'antd/lib/layout/layout';
+import { Col, Row } from 'antd';
 
 const AppContent = () => {
   const [pokemonOffset, setPokemonOffset] = useState(0)
@@ -13,13 +14,27 @@ const AppContent = () => {
       setPokemonData([...pokemonData, ...data.results]);
     }
     fetchData();
-  }, [pokemonData, pokemonOffset])
+
+    // eslint-disable-next-line
+  }, [pokemonOffset])
 
   return (
-    <Content>
-      {pokemonData.map((pokemonData) => (
-        <PokemonCard key={pokemonData.id} data={pokemonData} />
+    <Content
+      style={{ 
+        width: '100%',
+        padding: 20,
+        justifyContent: 'center'
+      }}
+    >
+      <Row
+        gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}
+      >
+        {pokemonData.map((pokemonData) => (
+          <Col>
+            <PokemonCard key={pokemonData.name} data={pokemonData} />
+          </Col>
         ))}
+      </Row>
     </Content>
   )
 }

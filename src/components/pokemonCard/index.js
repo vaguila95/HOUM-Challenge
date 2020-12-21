@@ -1,12 +1,12 @@
-import { Skeleton } from "antd";
+import { Card, Skeleton } from "antd";
 
 const PokemonCard = (props) => {
-  const { data } = props; 
+  const { data } = props;
 
   const cardContent = () => {
     if (data) {
       return (
-        <h1>#{data.id} {data.name}</h1>
+        <h1>Le content</h1>
       )
     }
     else {
@@ -17,9 +17,13 @@ const PokemonCard = (props) => {
   }
 
   return(
-    <div>
+    <Card
+      hoverable
+      title={data.name}
+      style={{ width: 200, height: 300 }}
+    >
       {cardContent()}
-    </div>
+    </Card>
   )
 }
 
