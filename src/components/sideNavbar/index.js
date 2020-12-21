@@ -51,12 +51,8 @@ const SideNavbar = (props) => {
     <Affix>
       <Sider 
         theme="light"
-        collapsible={true}
         style={{ height: '100vh'}}
       >
-        <Button type="primary" id="collapse-button" onClick={() => setCollapsed(!collapsed)}>
-          {collapsed ? <DoubleRightOutlined /> : <DoubleLeftOutlined />}
-        </Button>
         {/* <Input id="search-bar" placeholder="Ingresa tu búsqueda" /> */}
         <Menu
           mode="inline"
