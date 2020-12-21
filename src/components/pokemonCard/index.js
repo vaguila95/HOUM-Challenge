@@ -1,5 +1,12 @@
-import { Card, Col, Divider, Row, Skeleton } from "antd";
+import { Card, Col, Divider, Image, Row, Skeleton } from "antd";
 import { useEffect, useState } from "react";
+import "./pokemonCard.less"
+import HPIcon from "../../assets/images/hp.png";
+import AttackIcon from "../../assets/images/attack.png";
+import DefenseIcon from "../../assets/images/defense.png";
+import SpeedIcon from "../../assets/images/speed.png";
+import ShinyOnIcon from "../../assets/images/starOn.png";
+import ShinyOffIcon from "../../assets/images/starOff.png";
 
 const PokemonCard = (props) => {
   const { pokemonData } = props;
@@ -42,7 +49,7 @@ const PokemonCard = (props) => {
       const attributeRowStyles = { 
           border: "1px solid #ff7e14",
           borderRadius: "4px 0px 0px 4px",
-          width: "114%",
+          width: "120%",
           height: 20,
           marginBottom: 3
         }
@@ -50,26 +57,33 @@ const PokemonCard = (props) => {
       return (
         <div className="pokemon-card">
           <Row style={{ height: 20 }}>
-            <Col span={4}>#{info.id}</Col>
-            <Col span={4} offset={16}><span onClick={() => setShiny(!shiny)}>shiny</span></Col>
+            <Col span={3}>#{info.id}</Col>
+            <Col span={15} align="center"><p className="pokemon-card-name">{info.name.toUpperCase()}</p></Col>
+            <Col span={4} offset={2} align="center">
+              {
+              shiny ? 
+              <Image src={ShinyOnIcon} onClick={() => setShiny(!shiny)} width={15} preview={false}/> : 
+              <Image src={ShinyOffIcon} onClick={() => setShiny(!shiny)} width={15} preview={false}/>
+              }
+            </Col>
           </Row>
 
           <Row align="middle">
-            <Col span={16}>
+            <Col span={18} align="center">
               <img src={shiny ? info.sprites.front_shiny : info.sprites.front_default} alt=""/>
             </Col>
-            <Col span={8}>
+            <Col span={6}>
               <Row align="middle" style={attributeRowStyles}>
-                <Col span={8} offset={2}>hp:</Col><Col>{hp}</Col>
+                <Col span={8} offset={4}><Image src={HPIcon} width={10} /></Col><Col>{hp}</Col>
               </Row>
               <Row align="middle" style={attributeRowStyles}>
-                <Col span={8} offset={2}>atk:</Col><Col>{attack}</Col>
+                <Col span={8} offset={4}><Image src={AttackIcon} width={10} /></Col><Col>{attack}</Col>
               </Row>
               <Row align="middle" style={attributeRowStyles}>
-                <Col span={8} offset={2}>def:</Col><Col>{defense}</Col>
+                <Col span={8} offset={4}><Image src={DefenseIcon} width={10} /></Col><Col>{defense}</Col>
               </Row>
               <Row align="middle" style={attributeRowStyles}>
-                <Col span={8} offset={2}>sp:</Col><Col>{speed}</Col>
+                <Col span={8} offset={4}><Image src={SpeedIcon} width={10} /></Col><Col>{speed}</Col>
               </Row>
             </Col>
           </Row>
