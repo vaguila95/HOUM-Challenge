@@ -31,7 +31,7 @@ const AppContent = () => {
       >
         {pokemonData.map((pokemonData) => (
           <Col>
-            <PokemonCard key={pokemonData.name} data={pokemonData} />
+            <PokemonCard key={pokemonData.name} pokemonData={pokemonData} />
           </Col>
         ))}
       </Row>

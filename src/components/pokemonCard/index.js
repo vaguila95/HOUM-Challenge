@@ -1,12 +1,27 @@
 import { Card, Skeleton } from "antd";
+import { useEffect, useState } from "react";
 
 const PokemonCard = (props) => {
-  const { data } = props;
+  const { pokemonData } = props;
+  const [info, setInfo] = useState()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(pokemonData.url);
+      const  data = await response.json();
+      setInfo(data);
+    }
+    fetchData();
+
+    // eslint-disable-next-line
+  }, [])
 
   const cardContent = () => {
-    if (data) {
+    if (info) {
       return (
-        <h1>Le content</h1>
+        <div>
+          <p>#{info.id}</p>
+        </div>
       )
     }
     else {
@@ -19,8 +34,8 @@ const PokemonCard = (props) => {
   return(
     <Card
       hoverable
-      title={data.name}
-      style={{ width: 200, height: 300 }}
+      title={pokemonData.name}
+      style={{ width: 200, height: 300, display: 'flex' }}
     >
       {cardContent()}
     </Card>
