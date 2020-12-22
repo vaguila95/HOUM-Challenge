@@ -10,7 +10,7 @@ module.exports = {
             modifyVars: { 
               '@primary-color': '#ff5000',
               '@heading-color': '#ff5000',
-              '@font-size-base': '10px'
+              '@font-size-base': '12px'
             },
             javascriptEnabled: true,
           },
