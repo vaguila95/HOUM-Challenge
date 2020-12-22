@@ -19,7 +19,8 @@ const SideNavbar = (props) => {
       const data = await response.json();
       setTypes(data.results)
     }
-    fetchData();
+    fetchData()
+    .catch(err => { console.log(err) });
 
     // eslint-disable-next-line
   }, [])

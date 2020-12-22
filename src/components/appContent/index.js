@@ -45,30 +45,32 @@ const AppContent = (props) => {
         const data = await response.json();
         return data.pokemon
       }  
+
       const incomingData = []
       filteredTypes.forEach(type => {
         incomingData.push(fetchData(type));
       })
-      Promise.all(incomingData).then(values => {
-        setPokemonData(...values);
-      });
+      Promise.all(incomingData)
+        .then(values => { setPokemonData(...values) })
+        .catch(err => { console.log(err) });
+
     } else {
       const fetchData = async () => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonOffset}`);
         const data = await response.json();
         setPokemonData(data.results);
       }
-      fetchData();
+      fetchData()
+        .catch(err => { console.log(err) })
     }
 
-    // console.log(`Filtered types update. Data length: ${pokemonData.length}`);
+    //console.log(`Filtered types update. Data length: ${pokemonData.length}`);
     // eslint-disable-next-line
   }, [filteredTypes])
 
 
   const Cards = () => { 
     return (pokemonData.map(data => {
-
       let parsedData = data.pokemon ? data.pokemon : data;
       return (<Col><PokemonCard key={parsedData.name} pokemonData={parsedData} /></Col>)
     }))

@@ -19,7 +19,8 @@ const PokemonCard = (props) => {
       const  data = await response.json();
       setInfo(data);
     }
-    fetchData();
+    fetchData()
+      .catch(err => { console.log(err) });
 
     // eslint-disable-next-line
   }, [])
