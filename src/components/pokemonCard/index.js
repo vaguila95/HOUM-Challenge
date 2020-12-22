@@ -127,7 +127,7 @@ const PokemonCard = (props) => {
   return(
     <Card
       hoverable
-      style={{ width: 220, height: 270 }}
+      style={{ width: 220, height: 300 }}
       bodyStyle={{padding: 8, height: '100%'}}
     >
       {cardContent()}
