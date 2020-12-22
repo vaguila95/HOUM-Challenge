@@ -1,11 +1,9 @@
 import React from 'react'
 import './sideNavbar.less'
-import { Affix, Button, Menu, Select } from "antd"
+import { Affix, Menu, Select } from "antd"
 import Sider from "antd/lib/layout/Sider"
 import { useState, useEffect } from 'react'
 import {
-  DoubleRightOutlined,
-  DoubleLeftOutlined,
   FilterFilled,
   LoadingOutlined
 } from '@ant-design/icons';
@@ -15,7 +13,6 @@ const { Option } = Select;
 
 const SideNavbar = (props) => {
   const { newFilterHandler } = props;
-  const [collapsed, setCollapsed] = useState(false);
   const [types, setTypes] = useState([])
 
   useEffect(() => {
@@ -57,7 +54,6 @@ const SideNavbar = (props) => {
         <Menu
           mode="inline"
           theme="light"
-          inlineCollapsed={collapsed}
         >
           
           <SubMenu key="sub1" id="filter-menu" icon={<FilterFilled id="filter-icon"/>} title="TYPE FILTER">
