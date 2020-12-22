@@ -26,7 +26,6 @@ const SideNavbar = (props) => {
   }, [])
 
   
-
   const typesSelection = () => {
     if (types.length) {
       const children = []
@@ -36,9 +35,9 @@ const SideNavbar = (props) => {
       return (children)
     } else {
       return (
-        <div style={{ width: '100%', justifyContent: 'center' }}>
+        <Option style={{ width: '100%', justifyContent: 'center' }}>
           <LoadingOutlined />
-        </div>
+        </Option>
       )
     }
   }
