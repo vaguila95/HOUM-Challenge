@@ -49,14 +49,14 @@ const PokemonCard = (props) => {
       const attributeRowStyles = { 
           border: "1px solid #ff7e14",
           borderRadius: "4px 0px 0px 4px",
-          width: "120%",
-          height: 20,
-          marginBottom: 3
+          width: "118%",
+          height: 25,
+          marginBottom: 4
         }
 
       return (
         <div className="pokemon-card">
-          <Row style={{ height: 20 }}>
+          <Row style={{ height: 30 }}>
             <Col span={3}>#{info.id}</Col>
             <Col span={15} align="center"><p className="pokemon-card-name">{info.name.toUpperCase()}</p></Col>
             <Col span={4} offset={2} align="center">
@@ -70,7 +70,7 @@ const PokemonCard = (props) => {
 
           <Row align="middle">
             <Col span={18} align="center">
-              <img src={shiny ? info.sprites.front_shiny : info.sprites.front_default} alt=""/>
+              <Image src={shiny ? info.sprites.front_shiny : info.sprites.front_default} alt="" height={100}/>
             </Col>
             <Col span={6}>
               <Row align="middle" style={attributeRowStyles}>
@@ -127,7 +127,7 @@ const PokemonCard = (props) => {
   return(
     <Card
       hoverable
-      style={{ width: 200, height: 240 }}
+      style={{ width: 220, height: 270 }}
       bodyStyle={{padding: 8, height: '100%'}}
     >
       {cardContent()}
