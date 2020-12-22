@@ -10,10 +10,9 @@ import {
 const AppContent = (props) => {
   const { filteredTypes } = props;
   const [pokemonOffset, setPokemonOffset] = useState(0)
-  const [cardCount, setCardCount] = useState(0);
   const [pokemonData, setPokemonData] = useState([]);
-  const [pokemonCache, setPokemonCache] = useState({});
-  const [pokemonRegistry, setPokemonRegistry] = useState({});
+  // const [pokemonCache, setPokemonCache] = useState({});
+  // const [pokemonRegistry, setPokemonRegistry] = useState({});
 
   // manage pokemonOffset change
   useEffect(() => {
@@ -68,7 +67,7 @@ const AppContent = (props) => {
   const Cards = () => { 
     return (pokemonData.map(data => {
       let parsedData = data.pokemon ? data.pokemon : data;
-      return (<Col><PokemonCard key={parsedData.name} pokemonData={parsedData} /></Col>)
+      return (<Col key={parsedData.name}><PokemonCard pokemonData={parsedData} /></Col>)
     }))
   }
 
@@ -81,13 +80,14 @@ const AppContent = (props) => {
         justifyContent: 'center'
       }}
     >
-      <Row
+      <Row 
+        key={1}
         gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}
         justify="space-around"
       >
         { Cards() }
       </Row>
-      <Row>
+      <Row key={2}>
         <Col align="center" span={24}>
           <Button type="primary" onClick={() => {setPokemonOffset(pokemonOffset + 20)}}><DownOutlined /></Button>
         </Col>

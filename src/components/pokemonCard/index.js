@@ -111,9 +111,10 @@ const PokemonCard = (props) => {
 
           <Divider style={{ margin: 5, color: "#ff7e14" }}/>
           {info.abilities.map(ability => (
-            <Row>
+            <Row key={ability.ability.name}>
               <Col span={12} offset={3}>{ability.ability.name}:</Col> 
-              <Col>{ability.slot}</Col></Row>
+              <Col>{ability.slot}</Col>
+            </Row>
           ))}
         </div>
       )
