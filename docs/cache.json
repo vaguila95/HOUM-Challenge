@@ -1,0 +1,15 @@
+{
+  "bulbasaur": {
+    "id": 1,
+    "name": "bulbasaur",
+    "abilities": [],
+    "stats": [],
+    "sprites": {
+      "front_default": "url",
+      "front_shiny": "url"
+    },
+    "types": [],
+    "height": 70,
+    "weight": 6.9
+  }
+}
