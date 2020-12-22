@@ -2,6 +2,10 @@ import PokemonCard from '../pokemonCard'
 import { useEffect, useState } from 'react';
 import { Content } from 'antd/lib/layout/layout';
 import { Col, Row } from 'antd';
+import Button from 'antd/lib/button';
+import {
+  DownOutlined
+} from '@ant-design/icons';
 
 const AppContent = (props) => {
   const { filteredTypes } = props;
@@ -11,32 +15,23 @@ const AppContent = (props) => {
   const [pokemonCache, setPokemonCache] = useState({});
   const [pokemonRegistry, setPokemonRegistry] = useState({});
 
+  // manage pokemonOffset change
   useEffect(() => {
-    // if (0 === filteredTypes.length && pokemonData.length < pokemonOffset + 20) {
-    //   const fetchData = async () => {
-    //     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonOffset}`);
-    //     const data = await response.json();
-    //     setPokemonData(pokemonData.concat(data.results));
-    //   }
-    //   fetchData();
+    if (filteredTypes.length === 0) {
+      const fetchData = async () => {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonOffset}`);
+        const data = await response.json();
+        setPokemonData(pokemonData.concat(data.results));
+      }
+      fetchData().catch(err => { console.log(err) });
+    }
       
-    // } else if (filteredTypes.length !== 0) {
-    //   setPokemonData([]);
-    //   console.log(`Array should be empty. Data length: ${pokemonData.length}`);
-    //   const fetchData = async (type) => {
-    //     const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
-    //     const data = await response.json();
-    //     setPokemonData([...pokemonData, ...data.pokemon]);
-    //   }  
-    //   filteredTypes.forEach(type => {
-    //     fetchData(type);
-    //   })  
-      
-    // }  
-    // console.log(`pokemonOffset update. Data length: ${pokemonData.length}`);
+    // console.log(`pokemonOffset update. offset = ${pokemonOffset}`);
     // eslint-disable-next-line
   }, [pokemonOffset])
 
+
+  // manage when filteredTypes has changed.
   useEffect(() => {
     if (filteredTypes.length !== 0) {
       setPokemonData([]);
@@ -45,30 +40,33 @@ const AppContent = (props) => {
         const data = await response.json();
         return data.pokemon
       }  
+
       const incomingData = []
       filteredTypes.forEach(type => {
         incomingData.push(fetchData(type));
       })
-      Promise.all(incomingData).then(values => {
-        setPokemonData(...values);
-      });
+      Promise.all(incomingData)
+        .then(values => { setPokemonData(...values) })
+        .catch(err => { console.log(err) });
+
     } else {
+      setPokemonOffset(0);
       const fetchData = async () => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonOffset}`);
         const data = await response.json();
         setPokemonData(data.results);
       }
-      fetchData();
+      fetchData()
+        .catch(err => { console.log(err) })
     }
 
-    // console.log(`Filtered types update. Data length: ${pokemonData.length}`);
+    //console.log(`Filtered types update. Data length: ${pokemonData.length}`);
     // eslint-disable-next-line
   }, [filteredTypes])
 
 
   const Cards = () => { 
     return (pokemonData.map(data => {
-
       let parsedData = data.pokemon ? data.pokemon : data;
       return (<Col><PokemonCard key={parsedData.name} pokemonData={parsedData} /></Col>)
     }))
@@ -89,6 +87,11 @@ const AppContent = (props) => {
       >
         { Cards() }
       </Row>
+      <Row>
+        <Col align="center" span={24}>
+          <Button type="primary" onClick={() => {setPokemonOffset(pokemonOffset + 20)}}><DownOutlined /></Button>
+        </Col>
+      </Row>      
     </Content>
   )
 }

@@ -19,13 +19,13 @@ const SideNavbar = (props) => {
       const data = await response.json();
       setTypes(data.results)
     }
-    fetchData();
+    fetchData()
+    .catch(err => { console.log(err) });
 
     // eslint-disable-next-line
   }, [])
 
   
-
   const typesSelection = () => {
     if (types.length) {
       const children = []
@@ -35,9 +35,9 @@ const SideNavbar = (props) => {
       return (children)
     } else {
       return (
-        <div style={{ width: '100%', justifyContent: 'center' }}>
+        <Option style={{ width: '100%', justifyContent: 'center' }}>
           <LoadingOutlined />
-        </div>
+        </Option>
       )
     }
   }
